@@ -54,5 +54,5 @@ def move(start, end):
     whats_on_start = board[start[0]][start[1]]
     whats_on_end = board[end[0]][end[1]]
     if whats_on_start != "#" and start != end:
-        board[start[0]][start[1]], board[end[0]][end[1]] = whats_on_end, whats_on_start
+        board[start[0]][start[1]], board[end[0]][end[1]] = "#", whats_on_start
 
