@@ -52,6 +52,60 @@ def convert_coords(coords):
 
 def move(start, end):
     whats_on_start = board[start[0]][start[1]]
+    whats_on_end = board[end[0]][end[1]]
     if whats_on_start != "#" and start != end:
-        board[start[0]][start[1]], board[end[0]][end[1]] = "#", whats_on_start
+        if whats_on_start.lower() == "r":
+            if start[0] == end[0] or start[1] == end[1]:
+                board[start[0]][start[1]], board[end[0]][end[1]] = "#", whats_on_start
+            else:
+                print("illegal move")
 
+        elif whats_on_start.lower() == "b":
+            if abs(start[0] - end[0]) == abs(start[1] - end[1]):
+                board[start[0]][start[1]], board[end[0]][end[1]] = "#", whats_on_start
+            else:
+                print("illegal move")
+
+        elif whats_on_start.lower() == "q":
+            if (start[0] == end[0] or start[1] == end[1]) or (abs(start[0] - end[0]) == abs(start[1] - end[1])):
+                board[start[0]][start[1]], board[end[0]][end[1]] = "#", whats_on_start
+            else:
+                print("illegal move")
+
+        elif whats_on_start.lower() == "k":
+            if ((start[0] == end[0] or start[1] == end[1]) or (abs(start[0] - end[0]) == abs(start[1] - end[1]))) and (abs(start[0] - end[0]) <= 1 and abs(start[1] - end[1]) <= 1):
+                board[start[0]][start[1]], board[end[0]][end[1]] = "#", whats_on_start
+            else:
+                print("illegal move")
+
+        elif whats_on_start.lower() == "n":
+            if (abs(start[0] - end[0]) == 2 and abs(start[1] - end[1]) == 1) or (abs(start[0] - end[0]) == 1 and abs(start[1] - end[1]) == 2):
+                board[start[0]][start[1]], board[end[0]][end[1]] = "#", whats_on_start
+            else:
+                print("illegal move")
+
+        elif whats_on_start == "p":
+            if start[0] < end[0] and abs(start[0] - end[0]) == 1:
+                if whats_on_end == "#" and start[1] == end[1]:
+                    board[start[0]][start[1]], board[end[0]][end[1]] = "#", whats_on_start
+                elif whats_on_end != "#" and abs(start[1] - end[1]) == 1:
+                    board[start[0]][start[1]], board[end[0]][end[1]] = "#", whats_on_start
+                else:
+                    print("illegal move")
+
+        elif whats_on_start == "P":
+            if start[0] > end[0] and abs(start[0] - end[0]) == 1:
+                if whats_on_end == "#" and start[1] == end[1]:
+                    board[start[0]][start[1]], board[end[0]][end[1]] = "#", whats_on_start
+                elif whats_on_end != "#" and abs(start[1] - end[1]) == 1:
+                    board[start[0]][start[1]], board[end[0]][end[1]] = "#", whats_on_start
+                else:
+                    print("illegal move")
+
+
+            else:
+                print("illegal move")
+
+
+    else:
+        print("illegal move")
